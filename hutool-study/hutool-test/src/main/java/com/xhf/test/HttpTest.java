@@ -14,7 +14,7 @@ import java.io.IOException;
  * @Description:
  * @date 2019-12-6 22:56
  */
-public class TestControllerTest {
+public class HttpTest {
     public static String url = "http://localhost:8080/test";
 
     ObjectMapper mapper = new ObjectMapper();
