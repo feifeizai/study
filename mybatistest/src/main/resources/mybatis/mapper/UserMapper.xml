@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xhf.mybatis.mapper.UserMapper">
+    
+    <resultMap id="userMap" type="User">
+        <id column="user_id" property="userId" javaType="int"/>
+        <result column="user_name" property="userName" javaType="string"/>
+        <result column="password" property="password" javaType="string"/>
+    </resultMap>
+
+    <select id="findUserById" resultMap="userMap">
+        SELECT * FROM t_user WHERE user_id=#{userId}
+    </select>
+
+    <select id="findRoleId" resultType="integer">
+        SELECT role_id FROM USER_ROLE WHERE user_id=#{userId}
+    </select>
+
+    <select id="findUser" resultMap="resultMap">
+        SELECT * FROM t_user WHERE user_id=#{userId}
+    </select>
+    
+    <resultMap id="resultMap" type="User">
+        <id column="user_id" property="userId" javaType="integer"/>
+        <result column="user_name" property="userName" javaType="string"/>
+        <result column="password" property="password" javaType="string"/>
+        <association property="role" javaType="Role" column="user_id" select="com.xhf.mybatis.mapper.RoleMapper.findRole">
+            <id column="role_id" property="roleId" javaType="integer"/>
+            <result column="role_name" property="roleName" javaType="string"/>
+            <!--下边注释代码需要放到RoleMapper.xml中才可以，为什么？？？-->
+            <!--<collection property="permissions" ofType="Permission" column="role_id" select="com.xhf.mybatis.mapper.PermissionMapper.findPermission">
+                <id column="permission_id" property="permissionId" javaType="integer"/>
+                <result column="permission_name" property="permissionName" javaType="string"/>
+            </collection>-->
+        </association>
+    </resultMap>
+
+    <select id="findUserMap" resultType="map">
+        SELECT user_id userId,user_name username,password password FROM t_user WHERE user_id=#{userId}
+    </select>
+
+</mapper>

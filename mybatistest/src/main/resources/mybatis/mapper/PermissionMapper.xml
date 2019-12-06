@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xhf.mybatis.mapper.PermissionMapper">
+
+    <resultMap id="permissionMap" type="Permission">
+        <id column="permission_id" property="permissionId" javaType="integer"/>
+        <result column="permission_name" property="permissionName" javaType="string"/>
+    </resultMap>
+
+    <select id="findPermissionById" resultMap="permissionMap" parameterType="integer">
+        SELECT * FROM t_permission WHERE permission_id IN 
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="findPermission" parameterType="integer" resultMap="permissionMap">
+        SELECT p.* FROM t_permission p LEFT JOIN role_permission rp ON p.permission_id=rp.permission_id WHERE rp.role_id=#{roleId}
+
+    </select>
+
+</mapper>

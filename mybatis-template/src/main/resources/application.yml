@@ -1,0 +1,36 @@
+
+
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/taotao?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    hikari:
+      auto-commit: true
+      connection-test-query: SELECT 1
+      connection-timeout: 30000
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      maximum-pool-size: 15
+      minimum-idle: 5
+      pool-name: DatebookHikariCP
+
+
+mybatis:
+# 指定全局配置文件位置, 文件在resources文件下
+  config-location: classpath:mybatis/mybatis-config.xml
+  type-aliases-package: com.xhf.mybatis.entity
+  mapper-locations: classpath:mapper/*.xml
+
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+logging:
+  level:
+    com.xhf.mybatis.mapper : debug
