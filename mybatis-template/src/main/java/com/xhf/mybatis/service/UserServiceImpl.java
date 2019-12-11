@@ -1,6 +1,7 @@
 package com.xhf.mybatis.service;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xhf.mybatis.entity.User;
 import com.xhf.mybatis.entity.UserExample;
 import com.xhf.mybatis.mapper.UserMapper;
@@ -22,12 +23,13 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public List<User> findByPage(User user, Integer pageNum, Integer pageSize){
-        PageHelper.startPage(pageNum,pageSize);
+    public PageInfo<User> findByPage(User user, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         UserExample example = new UserExample();
         example.createCriteria().andIdGreaterThan(20L);
         List<User> list = userMapper.selectByExample(example);
-        return list;
+        PageInfo<User> pageInfo = new PageInfo(list);
+        return pageInfo;
     }
 
 }

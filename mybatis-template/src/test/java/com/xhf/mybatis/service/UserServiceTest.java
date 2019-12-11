@@ -1,5 +1,6 @@
 package com.xhf.mybatis.service;
 
+import com.github.pagehelper.PageInfo;
 import com.xhf.mybatis.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,11 @@ public class UserServiceTest {
         User user = new User();
         user.setId(15L);
 
-        List<User> list = userService.findByPage(user,1, 2);
+        PageInfo<User> page = userService.findByPage(user, 1, 2);
 
-        System.out.println(list.toString());
+        List<User> list = page.getList();
+        for (User u : list) {
+            System.out.println(u.toString());
+        }
     }
 }

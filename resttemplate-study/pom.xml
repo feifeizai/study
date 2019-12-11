@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>resttemplate-demo</artifactId>
+    <artifactId>resttemplate-study</artifactId>
     <groupId>com.xhf</groupId>
     <version>0.0.1-SNAPSHOT</version>
 

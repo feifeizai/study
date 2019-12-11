@@ -1,8 +1,7 @@
 package com.xhf.mybatis.service;
 
+import com.github.pagehelper.PageInfo;
 import com.xhf.mybatis.entity.User;
-
-import java.util.List;
 
 /**
  * @author 谢红飞
@@ -12,5 +11,5 @@ import java.util.List;
  */
 public interface UserService {
 
-    List<User> findByPage(User user, Integer pageNum, Integer pageSize);
+    PageInfo findByPage(User user, Integer pageNum, Integer pageSize);
 }
