@@ -16,4 +16,6 @@ public interface UserDao extends JpaRepository<User,Integer>{
 
     @Override
     List<User> findAll();
+
+
 }

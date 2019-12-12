@@ -26,20 +26,20 @@ spring:
       maximum-pool-size: 15
       minimum-idle: 5
       pool-name: DatebookHikariCP
-#  redis:
-#    host: 127.0.0.1
-##    password: redispassword
-#    port: 6379
-##    cluster:
-##      nodes: 192.168.211.134:7000,192.168.211.134:7001,192.168.211.134:7002
-##      maxRedirects: 6
-#    jedis:
-#      pool:
-#        max-idle: 8
-#        max-wait: -1
-#        min-idle: 0
-#        max-active: 8
-#    timeout: 5000
+  redis:
+    host: 127.0.0.1
+#    password: redispassword
+    port: 6379
+#    cluster:
+#      nodes: 192.168.211.134:7000,192.168.211.134:7001,192.168.211.134:7002
+#      maxRedirects: 6
+    jedis:
+      pool:
+        max-idle: 8
+        max-wait: -1
+        min-idle: 0
+        max-active: 8
+    timeout: 5000
 
 
 

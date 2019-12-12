@@ -1,6 +1,6 @@
 package com.xhf.demo;
 
-import com.xhf.demo.cache.UserCache;
+import com.xhf.demo.cache.UserGuavaCache;
 import com.xhf.demo.entity.User;
 import com.xhf.demo.service.UserService;
 import org.junit.Test;
@@ -8,46 +8,84 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.util.Assert;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class DemoApplicationTests {
 
 
-	@Autowired
-	UserService userService;
+    @Autowired
+    UserService userService;
 
-	@Test
-	public void contextLoads() {
+    @Test
+    public void contextLoads() {
 
-		List<User> all = userService.findAll();
-		System.out.println(all.toString());
+        List<User> all = userService.findAll();
+        System.out.println(all.toString());
 
-	}
+    }
 
 
-	@Autowired
-	UserCache userCache;
+    @Autowired
+    UserGuavaCache userGuavaCache;
 
-	@Test
-	public void guavaTest1() throws ExecutionException {
+    @Test
+    public void guavaTest1() throws ExecutionException {
 
-		User user = userCache.getUser(7);
-		User user22 = userCache.getUser(7);
-		User user23 = userCache.getUser(23);
+        User user = userGuavaCache.getUser(7);
+        User user22 = userGuavaCache.getUser(7);
+        User user23 = userGuavaCache.getUser(23);
 
-		System.out.println("guavaTest1:"+user.toString());
-	}
+        System.out.println("guavaTest1:" + user.toString());
+    }
 
-	@Test
-	public void guavaTest2() throws ExecutionException {
+    @Test
+    public void guavaTest2() throws ExecutionException {
 
-		List<User> users = userCache.getAllUsers();
-		System.out.println("guavaTest2:"+users.toString());
-	}
+        List<User> users = userGuavaCache.getAllUsers();
+        System.out.println("guavaTest2:" + users.toString());
+    }
 
+    @Test
+    public void cacheableTest1() {
+
+        User user1 = userService.findById(7);
+        User user2 = userService.findById(7);
+        User user3 = userService.findById(22);
+
+    }
+
+    @Test
+    public void cacheableTest2() {
+
+        User user1 = userService.findById(7);
+        System.out.println(user1.toString());
+        user1.setEmail("b@bb");
+        User update = userService.update(user1);
+        System.out.println(update.toString());
+
+        User user2 = userService.findById(7);
+
+    }
+
+    @Test
+    public void cacheableTest3() throws InterruptedException {
+
+        User user1 = userService.findById(7);
+        System.out.println(user1.toString());
+
+        User user2 = userService.findByIdRedis(7);
+        System.out.println(user2.toString());
+
+        TimeUnit.SECONDS.sleep(5);
+
+        User user3 = userService.findByIdRedis(7);
+
+        TimeUnit.SECONDS.sleep(7);
+        User user4 = userService.findByIdRedis(7);
+    }
 }

@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2019-8-29 23:16
  */
 @Component
-public class UserCache {
+public class UserGuavaCache {
 
     @Autowired
     private UserService userService;
