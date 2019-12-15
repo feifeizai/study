@@ -28,15 +28,26 @@ public class TestController {
         return groupVO;
     }
 
-    @PostMapping
-    public GroupVO post() {
-        List<ItemVO> itemList = getItemList();
+    @GetMapping("/get")
+    public ItemVO get1(ItemVO itemVO) {
 
-        Option option = getOption();
+        return itemVO;
+    }
 
-        GroupVO groupVO = new GroupVO(itemList, option);
+    @PostMapping("/form")
+    public ItemVO post(ItemVO itemVO) {
 
-        return groupVO;
+        System.out.println("post表单提交数据");
+
+        return itemVO;
+    }
+
+    @PostMapping("/body")
+    public ItemVO postBody(@RequestBody ItemVO itemVO) {
+
+        System.out.println("post已json提交数据");
+
+        return itemVO;
     }
 
     @DeleteMapping

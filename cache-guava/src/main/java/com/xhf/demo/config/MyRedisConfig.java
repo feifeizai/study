@@ -55,7 +55,7 @@ public class MyRedisConfig {
     @Bean
     public RedisCacheManager userCacheManager(RedisConnectionFactory redisConnectionFactory) {
         return new RedisCacheManager(RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory),
-                this.getRedisCacheConfigurationWithTtl(60),
+                this.getRedisCacheConfigurationWithTtl(60),//所有key超时60s
                 this.getRedisCacheConfigurationMap() // 指定 key 策略
         );
     }
@@ -63,8 +63,10 @@ public class MyRedisConfig {
     private Map<String, RedisCacheConfiguration> getRedisCacheConfigurationMap() {
         Map<String, RedisCacheConfiguration> redisCacheConfigurationMap = new HashMap<>();
         //SsoCache和BasicDataCache进行过期时间配置
+        //todo 被配置的以下3个缓存会使用redis缓存
         redisCacheConfigurationMap.put("messagCache", this.getRedisCacheConfigurationWithTtl(30 * 60));
-        redisCacheConfigurationMap.put("user", this.getRedisCacheConfigurationWithTtl(10));//自定义设置缓存时间
+        redisCacheConfigurationMap.put("userCache", this.getRedisCacheConfigurationWithTtl(5));//自定义设置缓存时间
+        redisCacheConfigurationMap.put("user", this.getRedisCacheConfigurationWithTtl(5));//自定义设置缓存时间
 
         return redisCacheConfigurationMap;
     }

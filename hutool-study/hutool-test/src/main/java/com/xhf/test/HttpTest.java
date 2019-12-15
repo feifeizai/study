@@ -1,11 +1,14 @@
 package com.xhf.test;
 
 import cn.hutool.http.HttpUtil;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.ReferenceType;
 import com.xhf.model.GroupVO;
 import com.xhf.model.ItemVO;
 import com.xhf.model.Option;
 import org.junit.Test;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 
@@ -23,7 +26,9 @@ public class HttpTest {
     public void get() throws IOException {
         String s = HttpUtil.get(url);
         GroupVO<ItemVO, Option> vo = new GroupVO<ItemVO, Option>();
+
         GroupVO groupVO = mapper.readValue(s, vo.getClass());
+
         System.out.println(groupVO.toString());
     }
 

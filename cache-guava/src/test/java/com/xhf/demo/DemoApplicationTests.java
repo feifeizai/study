@@ -81,11 +81,18 @@ public class DemoApplicationTests {
         User user2 = userService.findByIdRedis(7);
         System.out.println(user2.toString());
 
-        TimeUnit.SECONDS.sleep(5);
-
-        User user3 = userService.findByIdRedis(7);
+        User user3 = userService.selectById(7);
+        System.out.println(user3.toString());
 
         TimeUnit.SECONDS.sleep(7);
+
+        User user11 = userService.findById(7);
+        System.out.println("保存到user中的缓存设置超时时间, 需要重新查询");
+
         User user4 = userService.findByIdRedis(7);
+        System.out.println("保存到userCache中的缓存设置超时时间, 需要重新查询");
+
+        User user31 = userService.selectById(7);
+        System.out.println("保存到manage中的缓存未使用redis缓存, 不需要重新查询");
     }
 }

@@ -19,6 +19,7 @@
         <module>commons-lang3-study</module>
         <module>resttemplate-study</module>
         <module>hutool-study</module>
+        <module>mybatis-plus-demo</module>
     </modules>
 
 

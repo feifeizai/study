@@ -262,6 +262,7 @@ public class User implements Serializable {
         sb.append(", email=").append(email);
         sb.append(", created=").append(created);
         sb.append(", updated=").append(updated);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
     }

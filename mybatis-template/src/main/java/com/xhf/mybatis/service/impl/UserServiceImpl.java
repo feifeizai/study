@@ -1,10 +1,11 @@
-package com.xhf.mybatis.service;
+package com.xhf.mybatis.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xhf.mybatis.entity.User;
 import com.xhf.mybatis.entity.UserExample;
 import com.xhf.mybatis.mapper.UserMapper;
+import com.xhf.mybatis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

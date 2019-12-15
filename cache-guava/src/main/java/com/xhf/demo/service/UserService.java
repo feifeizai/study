@@ -27,4 +27,7 @@ public interface UserService {
 
     @Cacheable(value = {"user"}, key = "#id", cacheManager = "userCacheManager")
     User findByIdRedis(Integer id);
+
+    @Cacheable(value = {"manage"}, key = "#id")
+    User selectById(Integer id);
 }
