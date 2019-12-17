@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>asynchronous_task</module>
-        <module>easy-excel</module>
+        <module>easyexcel-study</module>
         <module>lacaldatetime-study</module>
         <module>lambda-stream</module>
         <module>jedis-command</module>
@@ -20,6 +20,7 @@
         <module>resttemplate-study</module>
         <module>hutool-study</module>
         <module>mybatis-plus-demo</module>
+        <module>file-upload-download</module>
     </modules>
 
 
