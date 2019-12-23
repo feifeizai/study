@@ -21,6 +21,7 @@
         <module>hutool-study</module>
         <module>mybatis-plus-demo</module>
         <module>file-upload-download</module>
+        <module>cache-study</module>
     </modules>
 
 
