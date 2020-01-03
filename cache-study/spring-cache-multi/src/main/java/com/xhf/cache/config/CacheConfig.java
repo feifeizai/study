@@ -22,9 +22,6 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class CacheConfig {
 
-    /**
-     * 1.
-     */
     @Bean
     public CacheManager secondManager() {
         GuavaCacheManager cacheManager = new GuavaCacheManager();

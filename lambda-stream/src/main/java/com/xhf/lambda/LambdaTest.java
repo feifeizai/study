@@ -6,6 +6,7 @@ import com.xhf.lambda.strategy.MyPredicate;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author 谢红飞
@@ -135,6 +136,17 @@ public class LambdaTest {
                 .limit(3)
                 .sorted()
                 .forEach(System.out::println);
+    }
+
+    //优化方式四：Stream API
+    @Test
+    public void test8(){
+        Double avg = emps.stream()
+                .collect(Collectors.averagingDouble(Employee::getSalary));
+
+        Map<String, Long> collect = emps.stream().collect(Collectors.groupingBy(Employee::getName, Collectors.counting()));
+
+
     }
 
 }

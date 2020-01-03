@@ -6,6 +6,7 @@ package com.xhf.lambda.strategy;
  * @Description:
  * @date 2019-10-11 22:52
  */
+@FunctionalInterface
 public interface MyPredicate<T> {
     public boolean test(T t);
 }
