@@ -1,0 +1,12 @@
+jiuxian:
+  name: jiuxian
+  sex-enum: man
+  hobbies: 变成
+  single: false
+  city:
+    name: newyork
+    no: 123
+  school:
+    no: 11
+    address: 深圳
+    name: xxx

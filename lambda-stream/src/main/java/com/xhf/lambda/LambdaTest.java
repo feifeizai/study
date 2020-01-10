@@ -31,11 +31,11 @@ public class LambdaTest {
     );
 
     //需求：获取公司中年龄小于 35 的员工信息
-    public List<Employee> filterEmployeeAge(List<Employee> emps){
+    public List<Employee> filterEmployeeAge(List<Employee> emps) {
         List<Employee> list = new ArrayList<>();
 
         for (Employee emp : emps) {
-            if(emp.getAge() <= 35){
+            if (emp.getAge() <= 35) {
                 list.add(emp);
             }
         }
@@ -44,11 +44,11 @@ public class LambdaTest {
     }
 
     //需求：获取公司中工资大于 5000 的员工信息
-    public List<Employee> filterEmployeeSalary(List<Employee> emps){
+    public List<Employee> filterEmployeeSalary(List<Employee> emps) {
         List<Employee> list = new ArrayList<>();
 
         for (Employee emp : emps) {
-            if(emp.getSalary() >= 5000){
+            if (emp.getSalary() >= 5000) {
                 list.add(emp);
             }
         }
@@ -57,7 +57,7 @@ public class LambdaTest {
     }
 
     @Test
-    public void test3(){
+    public void test3() {
 //        List<Employee> list = filterEmployeeSalary(emps);
         List<Employee> list = filterEmployeeAge(emps);
 
@@ -67,11 +67,11 @@ public class LambdaTest {
     }
 
     //优化方式一：策略设计模式
-    public List<Employee> filterEmployee(List<Employee> emps, MyPredicate<Employee> mp){
+    public List<Employee> filterEmployee(List<Employee> emps, MyPredicate<Employee> mp) {
         List<Employee> list = new ArrayList<>();
 
         for (Employee employee : emps) {
-            if(mp.test(employee)){
+            if (mp.test(employee)) {
                 list.add(employee);
             }
         }
@@ -80,7 +80,7 @@ public class LambdaTest {
     }
 
     @Test
-    public void test4(){
+    public void test4() {
 
         List<Employee> list = filterEmployee(emps, new FilterEmployeeAge());
         for (Employee employee : list) {
@@ -97,7 +97,7 @@ public class LambdaTest {
 
     //优化方式二：匿名内部类
     @Test
-    public void test5(){
+    public void test5() {
         List<Employee> list = filterEmployee(emps, new MyPredicate<Employee>() {
             @Override
             public boolean test(Employee t) {
@@ -112,7 +112,7 @@ public class LambdaTest {
 
     //优化方式三：Lambda 表达式
     @Test
-    public void test6(){
+    public void test6() {
         List<Employee> list = filterEmployee(emps, (e) -> e.getAge() <= 35);
         list.forEach(System.out::println);
 
@@ -124,7 +124,7 @@ public class LambdaTest {
 
     //优化方式四：Stream API
     @Test
-    public void test7(){
+    public void test7() {
         emps.stream()
                 .filter((e) -> e.getAge() <= 35)
                 .forEach(System.out::println);
@@ -140,12 +140,19 @@ public class LambdaTest {
 
     //优化方式四：Stream API
     @Test
-    public void test8(){
+    public void test8() {
         Double avg = emps.stream()
                 .collect(Collectors.averagingDouble(Employee::getSalary));
 
         Map<String, Long> collect = emps.stream().collect(Collectors.groupingBy(Employee::getName, Collectors.counting()));
 
+    }
+
+    @Test
+    public void test9() {
+
+        emps.stream()
+                .collect(Collectors.groupingBy(Employee::getName));
 
     }
 

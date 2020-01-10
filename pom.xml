@@ -23,9 +23,10 @@
         <module>file-upload-download</module>
         <module>cache-study</module>
         <module>log-study</module>
-        <module>traceId-producer</module>
         <module>log-study</module>
         <module>schedule-study</module>
+        <module>springboot-admin</module>
+        <module>springboot-study</module>
     </modules>
 
 
