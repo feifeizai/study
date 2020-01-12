@@ -2,7 +2,6 @@ package com.xhf.autoconfigure.core.yml;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 /**
@@ -12,7 +11,6 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  * @date 2020-1-10 22:10
  */
 @Data
-@EnableConfigurationProperties({JiuxianProperties.class})
 @ConfigurationProperties(prefix = "jiuxian")
 public class JiuxianProperties {
     private String name;
