@@ -4,8 +4,13 @@ import com.xhf.lambda.strategy.FilterEmployeeAge;
 import com.xhf.lambda.strategy.FilterEmployeeSalary;
 import com.xhf.lambda.strategy.MyPredicate;
 import org.junit.Test;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -23,11 +28,13 @@ public class LambdaTest {
     }
 
     List<Employee> emps = Arrays.asList(
-            new Employee(101, "张三", 18, 9999.99),
             new Employee(102, "李四", 59, 6666.66),
+            new Employee(101, "张三", 18, 9999.99),
             new Employee(103, "王五", 28, 3333.33),
             new Employee(104, "赵六", 8, 7777.77),
-            new Employee(105, "田七", 38, 5555.55)
+            new Employee(105, "田七", 38, 5555.55),
+            new Employee(106, "王五", 55, 5555.55),
+            new Employee(106, "", 55, 5555.55)
     );
 
     //需求：获取公司中年龄小于 35 的员工信息
@@ -156,4 +163,37 @@ public class LambdaTest {
 
     }
 
+    @Test
+    public void test10() {
+        Set<Object> set = ConcurrentHashMap.newKeySet();
+        emps.stream()
+                .filter(emp -> !StringUtils.isEmpty(emp.getName()) && set.add(emp.getName()))
+                .forEach(System.out::println);
+    }
+
+    @Test
+    public void test11() {
+        //array转set
+        String[] s = new String[]{"A", "B", "C", "D", "E"};
+        Set set = new HashSet<>(Arrays.asList(s));
+        System.out.println("set: " + set);
+        //set转array
+        String[] dest = (String[]) set.toArray(new String[0]);
+        System.out.println("dest: " + Arrays.toString(dest));
+    }
+
+    @Test
+    public void test12() {
+        ArrayList<Employee> collect = emps.stream()
+                .collect(
+                        Collectors.collectingAndThen(
+                                Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Employee::getName))), ArrayList::new
+                        )
+                );
+        System.out.println(collect);
+
+        TreeSet<Employee> employees = new TreeSet<>(Comparator.comparing(Employee::getName));
+        employees.addAll(emps);
+        System.out.println(employees);
+    }
 }

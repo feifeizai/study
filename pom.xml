@@ -27,6 +27,10 @@
         <module>schedule-study</module>
         <module>springboot-admin</module>
         <module>springboot-study</module>
+        <module>zookeeper-study</module>
+        <module>springcloud-study</module>
+        <module>concurrent-study</module>
+        <module>transaction-study</module>
     </modules>
 
 
