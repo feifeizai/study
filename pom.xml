@@ -31,6 +31,7 @@
         <module>springcloud-study</module>
         <module>concurrent-study</module>
         <module>transaction-study</module>
+        <module>springboot-redis</module>
     </modules>
 
 
