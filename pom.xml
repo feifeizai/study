@@ -32,6 +32,11 @@
         <module>concurrent-study</module>
         <module>transaction-study</module>
         <module>springboot-redis</module>
+        <module>schedule-spring</module>
+        <module>schedule-spring</module>
+        <module>schedule-study/schedule-spring</module>
+        <module>lombok-study</module>
+        <module>spring-extend</module>
     </modules>
 
 

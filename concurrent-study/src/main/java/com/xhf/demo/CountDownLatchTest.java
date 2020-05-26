@@ -89,4 +89,27 @@ public class CountDownLatchTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void test2() throws InterruptedException {
+        final CountDownLatch latch = new CountDownLatch(30);
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        for (int i = 0; i < 30; i++) {
+            executorService.execute(() -> {
+                try {
+                    System.out.println("子线程" + Thread.currentThread().getName() + "正在执行");
+                    Thread.sleep(3000);
+                    System.out.println("子线程" + Thread.currentThread().getName() + "执行完毕");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    latch.countDown();
+                }
+            });
+        }
+        System.out.println("等待2个子线程执行完毕...");
+        latch.await();
+        System.out.println("2个子线程已经执行完毕");
+
+    }
 }

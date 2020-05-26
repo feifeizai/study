@@ -1,7 +1,6 @@
 package com.xhf.schedule.task;
 
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
@@ -21,13 +20,13 @@ public class ScheduleTask {
     private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     //@Scheduled(fixedDelay=3000)
-    public void fixedDelay(){
-        System.out.println("定时任务延迟 fixedDelay:"+format.format(new Date()));
+    public void fixedDelay() {
+        System.out.println("定时任务延迟 fixedDelay:" + format.format(new Date()));
     }
 
     //@Scheduled(cron = "0/5 * * * * ?")
-    public void cron(){
-        System.out.println("定时任务延迟 cron:"+format.format(new Date()));
+    public void cron() {
+        System.out.println("定时任务延迟 cron:" + format.format(new Date()));
     }
 
 }

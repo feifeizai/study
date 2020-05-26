@@ -38,9 +38,9 @@ public class DynamicScheduleTask implements SchedulingConfigurer {
                 //获取时间
 
                 //1. cron表达式 0/5 * * * * ?
-                //CronTrigger trigger = new CronTrigger(cron);
+                CronTrigger trigger = new CronTrigger("0/5 * * * * ?");
                 //2. 延迟时间
-                PeriodicTrigger trigger = new PeriodicTrigger(5, TimeUnit.SECONDS);
+                //PeriodicTrigger trigger = new PeriodicTrigger(5, TimeUnit.SECONDS);
 
                 Date nextExec = trigger.nextExecutionTime(triggerContext);
                 return nextExec;
