@@ -50,7 +50,7 @@ public class CompletableFutureTest {
                 TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {
             }
-            if (new Random().nextInt() % 2 >= 0) {
+            if (new Random().nextInt() % 2 >= 1) {
                 int i = 12 / 0;
             }
             System.out.println("run end ...");

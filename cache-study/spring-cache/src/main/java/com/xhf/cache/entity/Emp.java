@@ -2,9 +2,6 @@ package com.xhf.cache.entity;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-
-import java.io.Serializable;
 
 /**
  * @author 谢红飞
