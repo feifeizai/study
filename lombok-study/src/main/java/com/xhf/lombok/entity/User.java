@@ -1,9 +1,8 @@
 package com.xhf.lombok.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.List;
 
 /**
  * @author 谢红飞
@@ -22,5 +21,10 @@ public class User {
 
     private String addr;
 
-
+    /**
+     * 1.变量名最后必须以s结尾
+     * 2.@Singular只有在@Builder下面才能使用
+     */
+    @Singular
+    private List<Long> lists;
 }

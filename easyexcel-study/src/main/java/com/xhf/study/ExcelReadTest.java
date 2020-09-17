@@ -2,7 +2,7 @@ package com.xhf.study;
 
 import com.xhf.ExcelUtil;
 import com.xhf.bean.ExcelPropertyIndexModel;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;

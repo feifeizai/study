@@ -6,7 +6,7 @@ import com.alibaba.excel.metadata.Table;
 import com.alibaba.excel.support.ExcelTypeEnum;
 import com.xhf.bean.ExcelPropertyIndexModel;
 import com.xhf.bean.MultiLineHeadExcelModel;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

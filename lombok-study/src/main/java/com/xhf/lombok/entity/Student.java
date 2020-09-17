@@ -1,9 +1,6 @@
 package com.xhf.lombok.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * @author 谢红飞
@@ -14,6 +11,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+//@EqualsAndHashCode(of = {"id", "name"})
+@EqualsAndHashCode(exclude = {"addr", "name"})
 public class Student {
 
     private Long id;

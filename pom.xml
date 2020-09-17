@@ -38,6 +38,7 @@
         <module>DataStructures</module>
         <module>Algorithm</module>
         <module>springcloud-study</module>
+        <module>mapstruct</module>
     </modules>
 
 

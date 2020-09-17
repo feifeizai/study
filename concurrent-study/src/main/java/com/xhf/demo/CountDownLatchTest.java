@@ -2,10 +2,8 @@ package com.xhf.demo;
 
 import org.junit.Test;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author 谢红飞
@@ -93,6 +91,7 @@ public class CountDownLatchTest {
     @Test
     public void test2() throws InterruptedException {
         final CountDownLatch latch = new CountDownLatch(30);
+        //线程池作为局部变量时需要shutDown
         ExecutorService executorService = Executors.newFixedThreadPool(5);
         for (int i = 0; i < 30; i++) {
             executorService.execute(() -> {
@@ -109,7 +108,36 @@ public class CountDownLatchTest {
         }
         System.out.println("等待2个子线程执行完毕...");
         latch.await();
+        executorService.shutdown();
         System.out.println("2个子线程已经执行完毕");
 
     }
+
+    @Test
+    public void test3() throws InterruptedException {
+        int count = 10;
+        final CountDownLatch latch = new CountDownLatch(count);
+        //线程池作为局部变量时需要shutDown
+        ThreadPoolExecutor executorService = new ThreadPoolExecutor(5, 5, 60L, TimeUnit.SECONDS,
+                new LinkedBlockingQueue<Runnable>(5));
+        executorService.allowCoreThreadTimeOut(true);
+        for (int i = 0; i < count; i++) {
+            executorService.execute(() -> {
+                try {
+                    System.out.println("子线程" + Thread.currentThread().getName());
+                    Thread.sleep(2000);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    latch.countDown();
+                    System.out.println("latch:" + latch.getCount());
+                }
+            });
+        }
+        latch.await();
+        executorService.shutdown();
+        System.out.println("线程池已经执行完毕");
+    }
+
+
 }
